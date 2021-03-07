@@ -119,12 +119,12 @@ namespace DataProcessing
         public static void Main(String[] args)
         {
 
-            var tweets = new string[]
-            {
-                "My Cali girl Katie at a tractor pull might be the funniest thing ever  @pix_perfect12",
-                "I'm so excited to be back in Cali a week from today. : ) I will miss many things about living in WA though.",
-                "order plane tickets, cali is the mission."
-            };
+            //var tweets = new string[]
+            //{
+            //    "My Cali girl Katie at a tractor pull might be the funniest thing ever  @pix_perfect12",
+            //    "I'm so excited to be back in Cali a week from today. : ) I will miss many things about living in WA though.",
+            //    "order plane tickets, cali is the mission."
+            //};
 
             //String txt = tweets[1];
             //Suffix_tree S = new Suffix_tree(txt);
