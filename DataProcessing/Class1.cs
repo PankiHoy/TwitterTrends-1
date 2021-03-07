@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -157,6 +158,10 @@ namespace DataProcessing
             //TimeSpan elapsed = end - start;
             //Console.WriteLine(elapsed.TotalSeconds);
 
+            var jsonParser = JsonHandler.GetJsonInstance();
+            States states = States.GetStatesInstance();
+
+            //change to relative path
             var parser = TextParser.GetInstance();
             parser.ParseFile(
                 "C:\\Users\\temoh\\source\\repos\\TwitterTrends\\DataProcessing\\DataToProcess\\cali_tweets2014.txt");
