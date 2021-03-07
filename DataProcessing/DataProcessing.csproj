@@ -9,4 +9,12 @@
     <PackageReference Include="CsvHelper" Version="26.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataToProcess\" />
+  </ItemGroup>
+
 </Project>

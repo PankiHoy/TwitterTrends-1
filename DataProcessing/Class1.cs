@@ -149,14 +149,18 @@ namespace DataProcessing
             //S.search_tree("forgeeks");
 
 
-            DateTime start = DateTime.Now;
+            //DateTime start = DateTime.Now;
             
             
-            DateTime end = DateTime.Now;
+            //DateTime end = DateTime.Now;
 
-            TimeSpan elapsed = end - start;
-            Console.WriteLine(elapsed.TotalSeconds);
-            
+            //TimeSpan elapsed = end - start;
+            //Console.WriteLine(elapsed.TotalSeconds);
+
+            var parser = TextParser.GetInstance();
+            parser.ParseFile(
+                "C:\\Users\\temoh\\source\\repos\\TwitterTrends\\DataProcessing\\DataToProcess\\cali_tweets2014.txt");
+
 
 
 

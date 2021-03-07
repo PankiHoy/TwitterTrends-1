@@ -6,5 +6,6 @@ namespace Core
     {
         public string Text { get; set; }
         public double Sentiments { get; set; }
+        public string State { get; set; }
     }
 }
