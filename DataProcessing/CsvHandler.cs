@@ -22,7 +22,10 @@ namespace DataProcessing
             using var csv = new CsvReader(reader, config);
             Sentiments = csv.GetRecords<Sentiment>().ToList();
         }
-
+        /// <summary>
+        /// some changes
+        /// </summary>
+        /// <returns></returns>
         public static CsvHandler GetCsvInstance()
         {
             return _instance ??= new CsvHandler();
