@@ -6,28 +6,28 @@ namespace Core
 {
     public class States
     {
-        private static States statesInstance;
+        private static States _statesInstance;
 
         //could be changed to ObservableCollection<States>
-        private List<State> statesCollection;
-        public List<State> StatesCollection { get => statesCollection; }
+        private List<State> _statesCollection;
+        public List<State> StatesCollection { get => _statesCollection; }
 
         private States(List<State> states)
         {
-            statesCollection = states;
+            _statesCollection = states;
         }
 
         public static States GetStatesInstance()
         {
-            if (statesInstance == null)
-                statesInstance = new States(new List<State>());
+            if (_statesInstance == null)
+                _statesInstance = new States(new List<State>());
 
-            return statesInstance;
+            return _statesInstance;
         }
 
         public static void CreateStatesInstance(List<State> states)
         {
-            statesInstance = new States(states);
+            _statesInstance = new States(states);
         }
     }
 }
