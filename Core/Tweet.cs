@@ -11,6 +11,7 @@ namespace Core
         public string State { get; set; }
         public Tweet(string tweetText, Coordinate coordinate, DateTime date)
         {
+
             Text = tweetText;
             Date = date;
             Location = coordinate;
