@@ -19,5 +19,11 @@ namespace Core
     {
         public double Latitude;
         public double Longitude;
+        public Coordinate(double longitude, double latitude)
+        {
+            Longitude = longitude;
+            Latitude = latitude;
+
+        }
     }
 }

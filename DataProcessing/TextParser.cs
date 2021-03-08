@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Core;
 
@@ -14,7 +15,7 @@ namespace DataProcessing
 
         private TextParser()
         {
-            
+
         }
 
         public void ParseFile(string path)
@@ -24,7 +25,24 @@ namespace DataProcessing
                 Console.WriteLine(line);
             });
         }
-
+        public static Tweet TweetParse(string tweetLine)
+        {
+            Regex pattern = new Regex(@"(\t\u005F\t|\t+)");
+            string[] splitedTweetLine = pattern.Split(tweetLine);
+            Tweet tweet = new Tweet(splitedTweetLine[4], CoordinatesParser(splitedTweetLine[0].Trim('[', ']').Split(", ")), DateParser(splitedTweetLine[2]));
+            return tweet;
+        }
+        public static DateTime DateParser(string line)
+        {
+            DateTime.TryParse(line, out DateTime tweetDate);
+            return tweetDate;
+        }
+        public static Coordinate CoordinatesParser(string[] coordinates)
+        {
+            Double.TryParse(coordinates[0], out double longitude);
+            Double.TryParse(coordinates[1], out double latitude);
+            return new Coordinate(longitude, latitude);
+        }
         public static TextParser GetInstance()
         {
             return _instance ??= new TextParser();
