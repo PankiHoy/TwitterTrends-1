@@ -10,7 +10,7 @@ namespace DataProcessing
 {
     public class JsonHandler
     {
-        private static JsonHandler jsonHandler;
+        private static JsonHandler _jsonHandler;
 
         private JsonHandler()
         {
@@ -23,10 +23,10 @@ namespace DataProcessing
 
         public static JsonHandler GetJsonInstance()
         {
-            if (jsonHandler == null)
-                jsonHandler = new JsonHandler();
+            if (_jsonHandler == null)
+                _jsonHandler = new JsonHandler();
 
-            return jsonHandler;
+            return _jsonHandler;
         }
 
         private List<State> DeserializeStates(string jsonString)

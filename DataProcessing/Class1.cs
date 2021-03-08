@@ -149,26 +149,19 @@ namespace DataProcessing
             //Console.WriteLine("\nSearch for 'forgeeks'");
             //S.search_tree("forgeeks");
 
-
-            //DateTime start = DateTime.Now;
-
-
-            //DateTime end = DateTime.Now;
-
-            //TimeSpan elapsed = end - start;
-            //Console.WriteLine(elapsed.TotalSeconds);
-
+            DateTime start = DateTime.Now;
             var jsonParser = JsonHandler.GetJsonInstance();
+            DateTime end = DateTime.Now;
+
+            TimeSpan elapsed = end - start;
+            Console.WriteLine(elapsed.TotalSeconds);
+
+
             States states = States.GetStatesInstance();
 
-            //change to relative path
             var parser = TextParser.GetInstance();
             parser.ParseFile(
-                "C:\\Users\\temoh\\source\\repos\\TwitterTrends\\DataProcessing\\DataToProcess\\cali_tweets2014.txt");
-
-
-
-
+                @"..\..\..\DataToProcess\cali_tweets2014.txt");
         }
     }
 }

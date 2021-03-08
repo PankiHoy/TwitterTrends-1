@@ -6,12 +6,12 @@ namespace Core
 {
     public class Polygon
     {
-        private List<Coordinate> vertices;
-        public List<Coordinate> Vertices { get => vertices; }
+        private List<Coordinate> _vertices;
+        public List<Coordinate> Vertices { get => _vertices; }
 
         public Polygon(List<Coordinate> coordinates)
         {
-            vertices = coordinates;
+            _vertices = coordinates;
         }
     }
 

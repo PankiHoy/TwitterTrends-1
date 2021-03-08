@@ -10,7 +10,7 @@ namespace DataProcessing
 {
    public class CsvHandler
    {
-       private static CsvHandler _instance;
+        private static CsvHandler _instance;
         public IEnumerable<Sentiment> Sentiments { get; private set; }
         private CsvHandler()
         {
@@ -18,7 +18,8 @@ namespace DataProcessing
             {
                 HasHeaderRecord = false,
             };
-            using var reader = new StreamReader("C:\\Users\\temoh\\source\\repos\\TwitterTrends\\DataProcessing\\sentiments.csv");
+            //check correctness of relative path
+            using var reader = new StreamReader(@"..\..\..\sentiments.csv");
             using var csv = new CsvReader(reader, config);
             Sentiments = csv.GetRecords<Sentiment>().ToList();
         }

@@ -6,16 +6,16 @@ namespace Core
 {
     public class State
     {
-        private string postalCode;
-        private List<Polygon> shape;
+        private string _postalCode;
+        private List<Polygon> _shape;
 
-        public string PostalCode { get => postalCode; }
-        public List<Polygon> Shape { get => shape; }
+        public string PostalCode { get => _postalCode; }
+        public List<Polygon> Shape { get => _shape; }
 
         public State(string postalCode, List<Polygon> shape)
         {
-            this.postalCode = postalCode;
-            this.shape = shape;
+            _postalCode = postalCode;
+            _shape = shape;
         }
     }
 }
