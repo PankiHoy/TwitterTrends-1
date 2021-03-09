@@ -1,4 +1,4 @@
-﻿using Core;
+using Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +45,7 @@ namespace DataProcessing
             //}
 
 
-            DateTime start = DateTime.Now;
+
 
             
                  Trie trie = new Trie();
@@ -71,13 +71,29 @@ namespace DataProcessing
                 else continue;
             }
 
-            DateTime end = DateTime.Now;
             Console.WriteLine(parser.Tweets.Count);
+
+
+            var jsonParser = JsonHandler.GetJsonInstance();
+
+            DateTime start = DateTime.Now;
+            State state = null;
+            foreach (State s in States.GetStatesInstance().StatesCollection)
+            {
+                if (s.IsInnerPoint(parser.Tweets[228].Location))
+                    state = s;
+            }
+            DateTime end = DateTime.Now;
             var elapsed = end - start;
             Console.WriteLine(elapsed.TotalSeconds);
 
+            if (state != null)
+                Console.Write(state.PostalCode);
 
-
+            Console.WriteLine();
+            Console.Write(parser.Tweets[228].Location.Latitude);
+            Console.Write(' ');
+            Console.Write(parser.Tweets[228].Location.Longitude);
         }
     }
 }

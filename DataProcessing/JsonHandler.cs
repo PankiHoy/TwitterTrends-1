@@ -142,7 +142,7 @@ namespace DataProcessing
                                 {
                                     isCoordinateOpened = false;
                                     //it means that we have read latitude and we have longtitude in the buffer
-                                    coordinate.Longitude = Double.Parse(bufferNumber.ToString(), formatter);
+                                    coordinate.Latitude = Double.Parse(bufferNumber.ToString(), formatter);
                                     //clear buffer and add coordinate into collection
                                     bufferNumber.Clear();
                                     coordinates.Add(coordinate);
@@ -204,7 +204,7 @@ namespace DataProcessing
                                 if (bufferNumber.Length > 0)
                                 {
                                     //so we write into needed field and clear buffer
-                                    coordinate.Latitude = Convert.ToDouble(bufferNumber.ToString(), formatter);
+                                    coordinate.Longitude = Convert.ToDouble(bufferNumber.ToString(), formatter);
                                     bufferNumber.Clear();
                                 }
                             }
