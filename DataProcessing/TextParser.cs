@@ -20,10 +20,15 @@ namespace DataProcessing
 
         public void ParseFile(string path)
         {
-            Parallel.ForEach(File.ReadLines(path), (line, _, lineNumber) =>
+            //Parallel.ForEach(File.ReadLines(path), (line, _, lineNumber) =>
+            //{
+            //    Console.WriteLine(line);
+            //});
+            Tweets = new List<Tweet>();
+            foreach(string line in File.ReadLines(path))
             {
-                Console.WriteLine(line);
-            });
+                Tweets.Add(TweetParse(line));
+            }
         }
         public static Tweet TweetParse(string tweetLine)
         {

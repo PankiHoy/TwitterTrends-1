@@ -149,32 +149,79 @@ namespace DataProcessing
             //Console.WriteLine("\nSearch for 'forgeeks'");
             //S.search_tree("forgeeks");
 
-            DateTime start = DateTime.Now;
-            //var jsonParser = JsonHandler.GetJsonInstance();
-            var csvParser = CsvHandler.GetCsvInstance();
-            DateTime end = DateTime.Now;
+            //DateTime start = DateTime.Now;
+            ////var jsonParser = JsonHandler.GetJsonInstance();
+            //var csvParser = CsvHandler.GetCsvInstance();
+            //DateTime end = DateTime.Now;
 
-            TimeSpan elapsed = end - start;
-            Console.WriteLine(elapsed.TotalSeconds);
+            //TimeSpan elapsed = end - start;
+            //Console.WriteLine(elapsed.TotalSeconds);
 
             //foreach(var element in csvParser.Sentiments)
             //{
             //    Console.WriteLine(element.Key + " " +  element.Value);
             //}
 
-            DateTime start1 = DateTime.Now;
-            double value = 0;
-            csvParser.Sentiments.TryGetValue("nice", out value);
-            DateTime end1 = DateTime.Now;
-            TimeSpan elapsed1 = end1 - start1;
-            Console.WriteLine(elapsed1.TotalSeconds);
-            Console.WriteLine(value);
+            //DateTime start1 = DateTime.Now;
+            //double value = 0;
+            //csvParser.Sentiments.TryGetValue("nice", out value);
+            //DateTime end1 = DateTime.Now;
+            //TimeSpan elapsed1 = end1 - start1;
+            //Console.WriteLine(elapsed1.TotalSeconds);
+            //Console.WriteLine(value);
 
             //States states = States.GetStatesInstance();
 
             //var parser = TextParser.GetInstance();
             //parser.ParseFile(
             //    @"..\..\..\DataToProcess\cali_tweets2014.txt");
+
+
+            //List<Coordinate> vertices = new List<Coordinate>()
+            //{
+            //    new Coordinate { Latitude = -1, Longitude = 5 },
+            //    new Coordinate { Latitude = 1, Longitude = 4 },
+            //    new Coordinate { Latitude = 2, Longitude = 2 },
+            //    new Coordinate { Latitude = 0, Longitude = 1 },
+            //    new Coordinate { Latitude = 2, Longitude = -2 },
+            //    new Coordinate { Latitude = 3, Longitude = -2 },
+            //    new Coordinate { Latitude = 4, Longitude = -3 },
+            //    new Coordinate { Latitude = 0, Longitude = -2 },
+            //    new Coordinate { Latitude = -1, Longitude = 3 },
+            //    new Coordinate { Latitude = -1, Longitude = 4 },
+            //    new Coordinate { Latitude = -4, Longitude = 3 },
+            //    new Coordinate { Latitude = -2, Longitude = 4 }
+            //};
+
+            //foreach (Coordinate c in vertices)
+            //{
+            //    Console.Write(c.Latitude);
+            //    Console.Write(' ');
+            //    Console.WriteLine(c.Longitude);
+            //}
+
+            //Polygon polygon = new Polygon(vertices);
+
+            //DateTime start = DateTime.Now;
+            //Console.WriteLine(polygon.IsInnerPoint(new Coordinate { Latitude = 1, Longitude = 2 }));
+            //DateTime end = DateTime.Now;
+
+            //TimeSpan elapsed = end - start;
+            //Console.WriteLine(elapsed.TotalSeconds);
+
+            var textParser = TextParser.GetInstance();
+            textParser.ParseFile(@"..\..\..\DataToProcess\cali_tweets2014.txt");
+            var jsonParser = JsonHandler.GetJsonInstance();
+
+            State state = null;
+            foreach (State s in States.GetStatesInstance().StatesCollection)
+            {
+                if (s.IsInnerPoint(textParser.Tweets[1].Location))
+                    state = s;
+            }
+
+            if (state != null)
+                Console.WriteLine(state);
         }
     }
 }

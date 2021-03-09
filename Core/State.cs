@@ -17,5 +17,16 @@ namespace Core
             _postalCode = postalCode;
             _shape = shape;
         }
+
+        public bool IsInnerPoint(Coordinate point)
+        {
+            foreach(Polygon polygon in _shape)
+            {
+                if (polygon.IsInnerPoint(point))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }
