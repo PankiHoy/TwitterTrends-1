@@ -18,15 +18,10 @@ namespace DataProcessing
             {
                 HasHeaderRecord = false,
             };
-            //check correctness of relative path
-            using var reader = new StreamReader(@"..\..\..\sentiments.csv");
+            using var reader = new StreamReader(@"..\..\..\DataToProcess\sentiments.csv");
             using var csv = new CsvReader(reader, config);
             Sentiments = ToDictionary(csv.GetRecords<Sentiment>());
         }
-        /// <summary>
-        /// some changes
-        /// </summary>
-        /// <returns></returns>
         public static CsvHandler GetCsvInstance()
         {
             return _instance ??= new CsvHandler();
