@@ -15,22 +15,39 @@ namespace DataProcessing
 
         private TextParser()
         {
-
+            Tweets = new List<Tweet>();
         }
 
         public void ParseFile(string path)
         {
-            Parallel.ForEach(File.ReadLines(path), (line, _, lineNumber) =>
+            //Parallel.ForEach(File.ReadLines(path), (line, _, lineNumber) =>
+            //{
+            //    Tweets.Add(TweetParse(line));
+            //});
+
+            foreach (var line in File.ReadLines(path))
             {
-                Console.WriteLine(line);
-            });
+                Tweets.Add(TweetParse(line));
+            }
+
+
         }
-        public static Tweet TweetParse(string tweetLine)
+        public Tweet TweetParse(string tweetLine)
         {
-            Regex pattern = new Regex(@"(\t\u005F\t|\t+)");
-            string[] splitedTweetLine = pattern.Split(tweetLine);
-            Tweet tweet = new Tweet(splitedTweetLine[4], CoordinatesParser(splitedTweetLine[0].Trim('[', ']').Split(", ")), DateParser(splitedTweetLine[2]));
-            return tweet;
+            try
+            {
+                Regex pattern = new Regex(@"(\t\u005F\t|\t+)");
+                string[] splitedTweetLine = pattern.Split(tweetLine);
+                Tweet tweet = new Tweet(splitedTweetLine[4],
+                    CoordinatesParser(splitedTweetLine[0].Trim('[', ']').Split(", ")), DateParser(splitedTweetLine[2]));
+                return tweet;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return null;
+            }
+
+
         }
         public static DateTime DateParser(string line)
         {
