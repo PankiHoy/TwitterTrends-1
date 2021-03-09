@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -56,8 +57,9 @@ namespace DataProcessing
         }
         public static Coordinate CoordinatesParser(string[] coordinates)
         {
-            Double.TryParse(coordinates[0], out double longitude);
-            Double.TryParse(coordinates[1], out double latitude);
+            IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
+            double latitude = Double.Parse(coordinates[0], formatter);
+            double longitude = Double.Parse(coordinates[1], formatter);
             return new Coordinate(longitude, latitude);
         }
         public static TextParser GetInstance()
