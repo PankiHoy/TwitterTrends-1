@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Core;
-using CsvHelper;
-using CsvHelper.Configuration;
 
 namespace DataProcessing
 {
-   public class CsvHandler
+    public class CsvHandler
    {
         private static CsvHandler _instance;
-        public IEnumerable<Sentiment> Sentiments { get; private set; }
+        public Dictionary<string, double> Sentiments { get; private set; }
         private CsvHandler()
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -21,7 +21,7 @@ namespace DataProcessing
             //check correctness of relative path
             using var reader = new StreamReader(@"..\..\..\sentiments.csv");
             using var csv = new CsvReader(reader, config);
-            Sentiments = csv.GetRecords<Sentiment>().ToList();
+            Sentiments = ToDictionary(csv.GetRecords<Sentiment>());
         }
         /// <summary>
         /// some changes
@@ -30,6 +30,18 @@ namespace DataProcessing
         public static CsvHandler GetCsvInstance()
         {
             return _instance ??= new CsvHandler();
+        }
+
+        private Dictionary<string, double> ToDictionary(IEnumerable<Sentiment> sentimentsEnumerable)
+        {
+            Dictionary<string, double> sentiments = new Dictionary<string, double>();
+
+            foreach (Sentiment sentiment in sentimentsEnumerable)
+            {
+                sentiments.Add(sentiment.Text, sentiment.SentimentVal);
+            }
+
+            return sentiments;
         }
    }
 }

@@ -150,18 +150,31 @@ namespace DataProcessing
             //S.search_tree("forgeeks");
 
             DateTime start = DateTime.Now;
-            var jsonParser = JsonHandler.GetJsonInstance();
+            //var jsonParser = JsonHandler.GetJsonInstance();
+            var csvParser = CsvHandler.GetCsvInstance();
             DateTime end = DateTime.Now;
 
             TimeSpan elapsed = end - start;
             Console.WriteLine(elapsed.TotalSeconds);
 
+            //foreach(var element in csvParser.Sentiments)
+            //{
+            //    Console.WriteLine(element.Key + " " +  element.Value);
+            //}
 
-            States states = States.GetStatesInstance();
+            DateTime start1 = DateTime.Now;
+            double value = 0;
+            csvParser.Sentiments.TryGetValue("nice", out value);
+            DateTime end1 = DateTime.Now;
+            TimeSpan elapsed1 = end1 - start1;
+            Console.WriteLine(elapsed1.TotalSeconds);
+            Console.WriteLine(value);
 
-            var parser = TextParser.GetInstance();
-            parser.ParseFile(
-                @"..\..\..\DataToProcess\cali_tweets2014.txt");
+            //States states = States.GetStatesInstance();
+
+            //var parser = TextParser.GetInstance();
+            //parser.ParseFile(
+            //    @"..\..\..\DataToProcess\cali_tweets2014.txt");
         }
     }
 }
