@@ -10,9 +10,9 @@ namespace DataProcessing
 {
     public class JsonHandler
     {
-        private static JsonHandler _jsonHandler;
+        // private static JsonHandler _jsonHandler;
 
-        private JsonHandler()
+        public JsonHandler()
         {
             using (StreamReader streamReader = new StreamReader(@"..\..\..\DataToProcess\states.json"))
             {
@@ -21,13 +21,13 @@ namespace DataProcessing
             }
         }
 
-        public static JsonHandler GetJsonInstance()
-        {
-            if (_jsonHandler == null)
-                _jsonHandler = new JsonHandler();
+        //public static JsonHandler GetJsonInstance()
+        //{
+        //    if (_jsonHandler == null)
+        //        _jsonHandler = new JsonHandler();
 
-            return _jsonHandler;
-        }
+        //    return _jsonHandler;
+        //}
 
         private List<State> DeserializeStates(string jsonString)
         {
@@ -45,8 +45,8 @@ namespace DataProcessing
 
             //regex for finding postal code
             //which is two letters inside quotes
-            string postalCodePattern = "\"\\w\\w\"";     
-            
+            string postalCodePattern = "\"\\w\\w\"";
+
             //regex for spliting input string on blocks
             //that represent state's shape as collection of polygons, that are collection of coordinates,
             //which are two double values recursively
@@ -131,7 +131,7 @@ namespace DataProcessing
                                 }
                             }
                         }
-                        else 
+                        else
                         {
                             if (shapeString[i] == ']')
                             {

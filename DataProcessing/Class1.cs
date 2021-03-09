@@ -1,13 +1,10 @@
 using Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataProcessing.PhrasesMatching;
-using System.Diagnostics;
 
 namespace DataProcessing
 {
-  public class Class1 { 
+    public class Class1
+    {
         // Driver Code 
         public static void Main(String[] args)
         {
@@ -46,35 +43,10 @@ namespace DataProcessing
 
 
 
-
-            
-                 Trie trie = new Trie();
-            CsvHandler csv = CsvHandler.GetCsvInstance();
-            foreach (var phrase in csv.Sentiments.Keys)
-            {
-                trie.Add(phrase);
-            }
-
-            trie.Build();
-
-            foreach (var tweet in parser.Tweets)
-            {
-                if (tweet != null)
-                {
-                    foreach (var match in trie.Find(tweet.Text))
-                    {
-                        double value;
-                        if (csv.Sentiments.TryGetValue(match, out value))
-                            tweet.Sentiments += value;
-                    }
-                }
-                else continue;
-            }
-
             Console.WriteLine(parser.Tweets.Count);
 
 
-            var jsonParser = JsonHandler.GetJsonInstance();
+            var jsonParser = new JsonHandler();
 
             DateTime start = DateTime.Now;
             State state = null;

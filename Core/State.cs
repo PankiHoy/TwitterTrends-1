@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Core
 {
@@ -20,7 +18,7 @@ namespace Core
 
         public bool IsInnerPoint(Coordinate point)
         {
-            foreach(Polygon polygon in _shape)
+            foreach (Polygon polygon in _shape)
             {
                 if (polygon.IsInnerPoint(point))
                     return true;

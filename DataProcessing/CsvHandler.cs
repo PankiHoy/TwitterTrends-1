@@ -4,12 +4,11 @@ using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 
 namespace DataProcessing
 {
     public class CsvHandler
-   {
+    {
         private static CsvHandler _instance;
         public Dictionary<string, double> Sentiments { get; private set; }
         private CsvHandler()
@@ -38,5 +37,5 @@ namespace DataProcessing
 
             return sentiments;
         }
-   }
+    }
 }

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Core;
 
 namespace DataProcessing
 {
@@ -21,11 +19,6 @@ namespace DataProcessing
 
         public void ParseFile(string path)
         {
-            //Parallel.ForEach(File.ReadLines(path), (line, _, lineNumber) =>
-            //{
-            //    Tweets.Add(TweetParse(line));
-            //});
-
             foreach (var line in File.ReadLines(path))
             {
                 Tweets.Add(TweetParse(line));
