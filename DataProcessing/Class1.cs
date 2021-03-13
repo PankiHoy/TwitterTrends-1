@@ -43,29 +43,35 @@ namespace DataProcessing
 
 
 
-            Console.WriteLine(parser.Tweets.Count);
+            //Console.WriteLine(parser.Tweets.Count);
 
 
-            var jsonParser = new JsonHandler();
+            //var jsonParser = new JsonHandler();
 
-            DateTime start = DateTime.Now;
-            State state = null;
-            foreach (State s in States.GetStatesInstance().StatesCollection)
-            {
-                if (s.IsInnerPoint(parser.Tweets[228].Location))
-                    state = s;
-            }
-            DateTime end = DateTime.Now;
-            var elapsed = end - start;
-            Console.WriteLine(elapsed.TotalSeconds);
+            //DateTime start = DateTime.Now;
+            //State state = null;
+            //foreach (State s in States.GetStatesInstance().StatesCollection)
+            //{
+            //    if (s.IsInnerPoint(parser.Tweets[228].Location))
+            //        state = s;
+            //}
+            //DateTime end = DateTime.Now;
+            //var elapsed = end - start;
+            //Console.WriteLine(elapsed.TotalSeconds);
 
-            if (state != null)
-                Console.Write(state.PostalCode);
+            //if (state != null)
+            //    Console.Write(state.PostalCode);
 
-            Console.WriteLine();
-            Console.Write(parser.Tweets[228].Location.Latitude);
-            Console.Write(' ');
-            Console.Write(parser.Tweets[228].Location.Longitude);
+            //Console.WriteLine();
+            //Console.Write(parser.Tweets[228].Location.Latitude);
+            //Console.Write(' ');
+            //Console.Write(parser.Tweets[228].Location.Longitude);
+
+            SentimentCounter sentimentCounter = new SentimentCounter();
+            sentimentCounter.CountSentiments(TextParser.GetInstance().Tweets);
+
+            Console.WriteLine(TextParser.GetInstance().Tweets[456].Text);
+            Console.WriteLine(TextParser.GetInstance().Tweets[456].Sentiments);
         }
     }
 }
