@@ -72,6 +72,7 @@ namespace DataProcessing
 
             Console.WriteLine(TextParser.GetInstance().Tweets[456].Text);
             Console.WriteLine(TextParser.GetInstance().Tweets[456].Sentiments);
+            //added comment
         }
     }
 }
