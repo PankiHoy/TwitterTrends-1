@@ -16,6 +16,7 @@ namespace DataProcessing.PhrasesMatching
     /// <typeparam name="TValue">The type of the value that will be returned when the word is found.</typeparam>
     public class Trie
     {
+        private char[] separator = {' ', '.', ',', '#', '\t'};
         /// <summary>
         /// Root of the trie. It has no value and no parent.
         /// </summary>
@@ -37,7 +38,7 @@ namespace DataProcessing.PhrasesMatching
             // start at the root
             var node = _root;
 
-            IEnumerable<string> words = phrase.Split();
+            IEnumerable<string> words = phrase.Split();//with separator?
 
             // build a branch for the word, one letter at a time
             // if a letter node doesn't exist, add it
@@ -68,13 +69,14 @@ namespace DataProcessing.PhrasesMatching
             List<string> foundPhrases = new List<string>();
             StringBuilder phrase = new StringBuilder();
 
-            string[] words = text.Split();
+            string[] words = text.Split(separator);//change to Regex.Split?
             for (int i = 0; i < words.Length;)
             {
-                if (node[words[i]] != null)
+                var wordToSearch = words[i].ToLower();
+                if (node[wordToSearch] != null)
                 {
-                    node = node[words[i]];
-                    phrase.Append(words[i]);
+                    node = node[wordToSearch];
+                    phrase.Append(wordToSearch);
                     phrase.Append(' ');
                     ++i;
                 }

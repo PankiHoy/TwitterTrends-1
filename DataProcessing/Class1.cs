@@ -34,7 +34,7 @@ namespace DataProcessing
 
             var parser = TextParser.GetInstance();
             parser.ParseFile(
-                @"..\..\..\DataToProcess\cali_tweets2014.txt");
+                @"..\..\..\DataToProcess\snow_tweets2014.txt");
 
             //foreach (var tweet in parser.Tweets)
             //{
@@ -68,11 +68,25 @@ namespace DataProcessing
             //Console.Write(parser.Tweets[228].Location.Longitude);
 
             SentimentCounter sentimentCounter = new SentimentCounter();
-            sentimentCounter.CountSentiments(TextParser.GetInstance().Tweets);
+            var txtParser = TextParser.GetInstance();
+            sentimentCounter.CountSentiments(txtParser.Tweets);
+            foreach (var tweet in txtParser.Tweets)
+            {
+                Console.WriteLine(tweet.Text);
+                Console.WriteLine(tweet.Sentiments);
+                foreach (var sent in tweet.SentVal)
+                {
+                    Console.WriteLine(sent);
+                }
+            }
+                
+            //Console.WriteLine(txtParser.Tweets[0].Text);
+            //Console.WriteLine(txtParser.Tweets[0].Sentiments);
+            //foreach (var sent in txtParser.Tweets[0].SentVal)
+            //{
+            //    Console.WriteLine(sent);
+            //}
 
-            Console.WriteLine(TextParser.GetInstance().Tweets[456].Text);
-            Console.WriteLine(TextParser.GetInstance().Tweets[456].Sentiments);
-            //added comment
         }
     }
 }
