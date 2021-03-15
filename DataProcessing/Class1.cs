@@ -34,7 +34,7 @@ namespace DataProcessing
 
             var parser = TextParser.GetInstance();
             parser.ParseFile(
-                @"..\..\..\DataToProcess\cali_tweets2014.txt");
+                @"..\..\..\DataToProcess\snow_tweets2014.txt");
 
             //foreach (var tweet in parser.Tweets)
             //{
@@ -43,29 +43,50 @@ namespace DataProcessing
 
 
 
-            Console.WriteLine(parser.Tweets.Count);
+            //Console.WriteLine(parser.Tweets.Count);
 
 
-            var jsonParser = new JsonHandler();
+            //var jsonParser = new JsonHandler();
 
-            DateTime start = DateTime.Now;
-            State state = null;
-            foreach (State s in States.GetStatesInstance().StatesCollection)
+            //DateTime start = DateTime.Now;
+            //State state = null;
+            //foreach (State s in States.GetStatesInstance().StatesCollection)
+            //{
+            //    if (s.IsInnerPoint(parser.Tweets[228].Location))
+            //        state = s;
+            //}
+            //DateTime end = DateTime.Now;
+            //var elapsed = end - start;
+            //Console.WriteLine(elapsed.TotalSeconds);
+
+            //if (state != null)
+            //    Console.Write(state.PostalCode);
+
+            //Console.WriteLine();
+            //Console.Write(parser.Tweets[228].Location.Latitude);
+            //Console.Write(' ');
+            //Console.Write(parser.Tweets[228].Location.Longitude);
+
+            SentimentCounter sentimentCounter = new SentimentCounter();
+            var txtParser = TextParser.GetInstance();
+            sentimentCounter.CountSentiments(txtParser.Tweets);
+            foreach (var tweet in txtParser.Tweets)
             {
-                if (s.IsInnerPoint(parser.Tweets[228].Location))
-                    state = s;
+                Console.WriteLine(tweet.Text);
+                Console.WriteLine(tweet.Sentiments);
+                foreach (var sent in tweet.SentVal)
+                {
+                    Console.WriteLine(sent);
+                }
             }
-            DateTime end = DateTime.Now;
-            var elapsed = end - start;
-            Console.WriteLine(elapsed.TotalSeconds);
+                
+            //Console.WriteLine(txtParser.Tweets[0].Text);
+            //Console.WriteLine(txtParser.Tweets[0].Sentiments);
+            //foreach (var sent in txtParser.Tweets[0].SentVal)
+            //{
+            //    Console.WriteLine(sent);
+            //}
 
-            if (state != null)
-                Console.Write(state.PostalCode);
-
-            Console.WriteLine();
-            Console.Write(parser.Tweets[228].Location.Latitude);
-            Console.Write(' ');
-            Console.Write(parser.Tweets[228].Location.Longitude);
         }
     }
 }

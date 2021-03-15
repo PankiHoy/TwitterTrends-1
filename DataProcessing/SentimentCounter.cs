@@ -16,12 +16,11 @@ namespace DataProcessing
             {
                 _trie.Add(key);
             }
-
-            _trie.Build();
         }
 
         public void CountSentiments(IEnumerable<Tweet> tweets)
-        {
+        {  
+            //maybe average instead of sum of values
             foreach (var tweet in tweets)
             {
                 if (tweet == null) continue;
@@ -30,6 +29,7 @@ namespace DataProcessing
                     if (_csvHandler.Sentiments.TryGetValue(match, out var value))
                     {
                         tweet.Sentiments += value;
+                        tweet.SentVal.Add(match);//DELETE
                     }
                 }
             }
