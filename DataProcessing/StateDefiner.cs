@@ -29,5 +29,17 @@ namespace DataProcessing
                 }
             }
         }
+        public void DefineState(Tweet tweet)
+        {
+            if (tweet == null) return;
+            foreach (var state in States.GetStatesInstance().StatesCollection)
+            {
+                if (state.IsInnerPoint(tweet.Location))
+                {
+                    tweet.State = state.PostalCode;
+                    break;
+                }
+            }
+        }
     }
 }
