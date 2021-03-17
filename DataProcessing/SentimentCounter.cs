@@ -29,8 +29,18 @@ namespace DataProcessing
                     if (_csvHandler.Sentiments.TryGetValue(match, out var value))
                     {
                         tweet.Sentiments += value;
-                        tweet.SentVal.Add(match);//DELETE
                     }
+                }
+            }
+        }
+        public void CountSentiments(Tweet tweet)
+        {
+            if (tweet == null) return;
+            foreach (var match in _trie.Find(tweet.Text))
+            {
+                if (_csvHandler.Sentiments.TryGetValue(match, out var value))
+                {
+                    tweet.Sentiments += value;
                 }
             }
         }

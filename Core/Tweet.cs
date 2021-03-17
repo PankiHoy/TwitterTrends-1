@@ -19,5 +19,9 @@ namespace Core
             Location = coordinate;
 
         }
+        public Tweet()
+        {
+
+        }
     }
 }

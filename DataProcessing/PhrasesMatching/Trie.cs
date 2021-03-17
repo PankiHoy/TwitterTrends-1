@@ -8,12 +8,11 @@ namespace DataProcessing.PhrasesMatching
    
     public class Trie
     {
-       
-        private readonly string pattern = @"[().,;:?\/!@#%'\|]";//FIX THIS PLS TO MATCH WHOLE PUNCTUATION
-        private Regex regex;
+      
+        private Regex _regex;
         public Trie()
         {
-            regex = new Regex(pattern);
+            _regex = new Regex("[().,;:?\\x22/!@#\\s%'|\"]");
         }
        
         private readonly Node _root = new Node();
@@ -43,9 +42,11 @@ namespace DataProcessing.PhrasesMatching
             List<string> foundPhrases = new List<string>();
             StringBuilder phrase = new StringBuilder();
 
-            string[] words = regex.Replace(text, "").Trim().Split();
+            string[] words = _regex.Split(text);
             for (int i = 0; i < words.Length;)
             {
+                if (words[i] == string.Empty)
+                continue;
                 var wordToSearch = words[i].ToLower();
                 if (node[wordToSearch] != null)
                 {

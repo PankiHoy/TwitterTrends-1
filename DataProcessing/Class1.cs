@@ -32,9 +32,9 @@ namespace DataProcessing
 
             //States states = States.GetStatesInstance();
 
-            var parser = TextParser.GetInstance();
-            parser.ParseFile(
-                @"..\..\..\DataToProcess\snow_tweets2014.txt");
+            //var parser = TextParser.GetInstance();
+            //parser.ParseFile(
+            //    @"..\..\..\DataToProcess\snow_tweets2014.txt");
 
             //foreach (var tweet in parser.Tweets)
             //{
@@ -67,23 +67,13 @@ namespace DataProcessing
             //Console.Write(' ');
             //Console.Write(parser.Tweets[228].Location.Longitude);
 
-            SentimentCounter sentimentCounter = new SentimentCounter();
-            StateDefiner stateDefiner = new StateDefiner();
-            var txtParser = TextParser.GetInstance();
-            sentimentCounter.CountSentiments(txtParser.Tweets);
-            stateDefiner.DefineStates(txtParser.Tweets);
+            //SentimentCounter sentimentCounter = new SentimentCounter();
+            //StateDefiner stateDefiner = new StateDefiner();
+            //var txtParser = TextParser.GetInstance();
+            //sentimentCounter.CountSentiments(txtParser.Tweets);
+            //stateDefiner.DefineStates(txtParser.Tweets);
 
-            foreach (var tweet in txtParser.Tweets)
-            {
-                Console.WriteLine(tweet.Text);
-                Console.WriteLine($"{tweet.Location}\t{tweet.State}");
-                Console.WriteLine(tweet.Sentiments);
-                //foreach (var sent in tweet.SentVal)
-                //{
-                //    Console.WriteLine(sent);
-                //}
-            }
-                
+
             //Console.WriteLine(txtParser.Tweets[0].Text);
             //Console.WriteLine(txtParser.Tweets[0].Sentiments);
             //foreach (var sent in txtParser.Tweets[0].SentVal)
@@ -91,6 +81,9 @@ namespace DataProcessing
             //    Console.WriteLine(sent);
             //}
 
+            TweetBuilder tweetBuilder = new TweetBuilder();
+            tweetBuilder.BuildTweets(@"..\..\..\DataToProcess\snow_tweets2014.txt");
+            var a = tweetBuilder.Tweets;
         }
     }
 }
