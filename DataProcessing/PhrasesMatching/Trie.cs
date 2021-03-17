@@ -37,6 +37,7 @@ namespace DataProcessing.PhrasesMatching
 
         public List<string> Find(string text)
         {
+            if (text == null) return null;//ADD EXCEPTION
             var node = _root;
 
             List<string> foundPhrases = new List<string>();

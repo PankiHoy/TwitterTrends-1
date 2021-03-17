@@ -1,6 +1,8 @@
-﻿using Core;
+﻿using System;
+using Core;
 using DataProcessing.PhrasesMatching;
 using System.Collections.Generic;
+
 
 namespace DataProcessing
 {
@@ -36,14 +38,26 @@ namespace DataProcessing
         public void CountSentimentsForTweet(Tweet tweet)
         {
             if (tweet == null) return;
-            foreach (var match in _trie.Find(tweet.Text))
+
+            try
             {
-                if (_csvHandler.Sentiments.TryGetValue(match, out var value))
+                var coll = _trie.Find(tweet.Text);
+               
+                foreach (var match in coll)
                 {
-                    tweet.Sentiments += value;
+                    if (_csvHandler.Sentiments.TryGetValue(match, out var value))
+                    {
+                        tweet.Sentiments += value;
+                    }
                 }
             }
+            catch(NullReferenceException)
+            {
+                return;
+            }
+        }
+           
         }
     }
 
-}
+

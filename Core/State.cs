@@ -6,6 +6,7 @@ namespace Core
     {
         private string _postalCode;
         private List<Polygon> _shape;
+       
 
         public string PostalCode { get => _postalCode; }
         public List<Polygon> Shape { get => _shape; }

@@ -88,7 +88,7 @@ namespace DataProcessing
             tweetBuilder.BuildTweets(@"..\..\..\DataToProcess\snow_tweets2014.txt");
             
             stopwatch.Stop();
-            var a = tweetBuilder.Tweets;
+            var a = tweetBuilder.StatesForDisplay;
             Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
 
         }

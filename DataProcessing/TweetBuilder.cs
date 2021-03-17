@@ -1,6 +1,7 @@
-﻿using Core;
+﻿using System;
+using Core;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace DataProcessing
 {
     public class TweetBuilder
@@ -9,15 +10,23 @@ namespace DataProcessing
         private StateDefiner _stateDefiner;
         private readonly TextParser _txtParser;
         private List<Tweet> _tweets;
+        private States _states;
+        public Dictionary<State, double> StatesToDisplay { get; }
+
+        public List<State> StatesForDisplay { get; set; }
         public List<Tweet> Tweets => _tweets;
 
         public TweetBuilder()
         {
+
             _tweets = new List<Tweet>();
             _sentimentCounter = new SentimentCounter();
             _txtParser = TextParser.GetInstance();
-
+            _states = States.GetStatesInstance();
             _stateDefiner = new StateDefiner();
+            _states = States.GetStatesInstance();
+            StatesForDisplay = new List<State>(_states.StatesCollection);
+            StatesToDisplay = new Dictionary<State, double>();
 
         }
         public void BuildTweet(string tweetLine)
@@ -34,6 +43,13 @@ namespace DataProcessing
             foreach (var line in _txtParser.GetFileLines(path))
             {
                 BuildTweet(line);
+            }
+
+            var query = Tweets.GroupBy(x => x.State);
+            foreach (var group in query)
+            {
+                StatesToDisplay.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)),//ONE STATE IS NULL(MAYBE MORE)
+                    group.Average(x => x.Sentiments));
             }
         }
 
