@@ -201,5 +201,9 @@ namespace Core
             Latitude = latitude;
 
         }
+        public override string ToString()
+        {
+            return Latitude.ToString() + " ; " + Longitude.ToString();
+        }
     }
 }
