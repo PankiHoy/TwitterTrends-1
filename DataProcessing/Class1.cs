@@ -1,5 +1,6 @@
 using Core;
 using System;
+using System.Diagnostics;
 
 namespace DataProcessing
 {
@@ -80,10 +81,16 @@ namespace DataProcessing
             //{
             //    Console.WriteLine(sent);
             //}
-
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             TweetBuilder tweetBuilder = new TweetBuilder();
+           
             tweetBuilder.BuildTweets(@"..\..\..\DataToProcess\snow_tweets2014.txt");
+            
+            stopwatch.Stop();
             var a = tweetBuilder.Tweets;
+            Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
+
         }
     }
 }

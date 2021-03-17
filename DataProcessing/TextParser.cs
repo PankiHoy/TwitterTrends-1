@@ -27,12 +27,13 @@ namespace DataProcessing
             Tweet tweet = new Tweet();
             foreach (var line in File.ReadLines(path))
             {
-                Tweets.Add(TweetParse(line, tweet));
+                TweetParse(line, tweet);
+                Tweets.Add(tweet);
             }
             //remade when async methods added
 
         }
-        public Tweet TweetParse(string tweetLine,Tweet tweet)
+        public void TweetParse(string tweetLine,Tweet tweet)
         {
             try
             {
@@ -41,11 +42,11 @@ namespace DataProcessing
                 tweet.Text = splitedTweetLine[4];
                    tweet.Location =CoordinatesParser( splitedTweetLine[0].Trim('[', ']').Split(", "));
                 tweet.Date = DateParser(splitedTweetLine[2]);
-                return tweet;
+                return;
             }
             catch (IndexOutOfRangeException)
             {
-                return null;
+                return;
             }
 
 

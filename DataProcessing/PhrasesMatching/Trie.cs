@@ -45,8 +45,7 @@ namespace DataProcessing.PhrasesMatching
             string[] words = _regex.Split(text);
             for (int i = 0; i < words.Length;)
             {
-                if (words[i] == string.Empty)
-                continue;
+              //
                 var wordToSearch = words[i].ToLower();
                 if (node[wordToSearch] != null)
                 {

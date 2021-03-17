@@ -33,7 +33,7 @@ namespace DataProcessing
                 }
             }
         }
-        public void CountSentiments(Tweet tweet)
+        public void CountSentimentsForTweet(Tweet tweet)
         {
             if (tweet == null) return;
             foreach (var match in _trie.Find(tweet.Text))

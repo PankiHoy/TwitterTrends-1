@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Core;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
 
 namespace DataProcessing
 {
@@ -21,25 +18,25 @@ namespace DataProcessing
             _txtParser = TextParser.GetInstance();
 
             _stateDefiner = new StateDefiner();
-            
+
         }
-        public  void BuildTweet(string tweetLine)
+        public void BuildTweet(string tweetLine)
         {
             Tweet tweet = new Tweet();
-           _txtParser.TweetParse(tweetLine, tweet);
-            _sentimentCounter.CountSentiments(tweet);
+            _txtParser.TweetParse(tweetLine, tweet);
+            _sentimentCounter.CountSentimentsForTweet(tweet);
             _stateDefiner.DefineState(tweet);
             _tweets.Add(tweet);
         }
 
-        public  void BuildTweets(string path)
+        public void BuildTweets(string path)
         {
-          foreach(var line in _txtParser.GetFileLines(path))
+            foreach (var line in _txtParser.GetFileLines(path))
             {
                 BuildTweet(line);
             }
         }
-        
+
 
 
     }
