@@ -12,7 +12,6 @@ namespace DataProcessing
         private List<Tweet> _tweets;
         private States _states;
         public Dictionary<State, double> StatesToDisplay { get; }
-
         public List<State> StatesForDisplay { get; set; }
         public List<Tweet> Tweets => _tweets;
 
