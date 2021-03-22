@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using TwitterTrends.Models;
 
 namespace TwitterTrends.Controllers
@@ -32,6 +33,16 @@ namespace TwitterTrends.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult Default()
+        {
+            ViewBag.mapdata = GetUSMap();
+            return View();
+        }
+        public object GetUSMap()
+        {
+            string allText = System.IO.File.ReadAllText("./wwwroot/scripts/MapsData/USA.json");
+            return JsonConvert.DeserializeObject(allText);
         }
     }
 }

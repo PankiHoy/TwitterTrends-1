@@ -47,6 +47,7 @@ namespace DataProcessing
             var query = Tweets.GroupBy(x => x.State);
             foreach (var group in query)
             {
+                if (group.Key == null) continue;
                 StatesToDisplay.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)),//ONE STATE IS NULL(MAYBE MORE)
                     group.Average(x => x.Sentiments));
             }

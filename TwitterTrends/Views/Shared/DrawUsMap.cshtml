@@ -1,0 +1,16 @@
+﻿
+
+@{
+    ViewBag.Title = "map";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+@using Syncfusion.EJ2;
+<ejs-maps id="maps">
+    <e-maps-zoomsettings enable="true" EnablePanning="true"></e-maps-zoomsettings>
+    <e-maps-layers>
+        <e-maps-layer shapeData="ViewBag.mapdata">
+        </e-maps-layer>
+    </e-maps-layers>
+</ejs-maps>
