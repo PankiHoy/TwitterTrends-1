@@ -17,7 +17,7 @@ namespace DataProcessing
             {
                 HasHeaderRecord = false,
             };
-            using var reader = new StreamReader(@"..\..\..\DataToProcess\sentiments.csv");
+            using var reader = new StreamReader(@"D:\programming\TwitterTrends\DataProcessing\DataToProcess\sentiments.csv");
             using var csv = new CsvReader(reader, config);
             Sentiments = ToDictionary(csv.GetRecords<Sentiment>());
         }

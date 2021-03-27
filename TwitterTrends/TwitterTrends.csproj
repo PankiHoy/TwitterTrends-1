@@ -35,4 +35,9 @@
     <None Include="Views\Shared\DrawUsMap.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataProcessing\DataProcessing.csproj" />
+  </ItemGroup>
+
 </Project>

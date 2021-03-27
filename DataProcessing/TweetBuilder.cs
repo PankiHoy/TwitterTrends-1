@@ -44,13 +44,19 @@ namespace DataProcessing
                 BuildTweet(line);
             }
 
+            var buffer = new List<State>();
             var query = Tweets.GroupBy(x => x.State);
             foreach (var group in query)
             {
                 if (group.Key == null) continue;
-                StatesToDisplay.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)),//ONE STATE IS NULL(MAYBE MORE)
-                    group.Average(x => x.Sentiments));
+                //StatesToDisplay.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)),//ONE STATE IS NULL(MAYBE MORE)
+                //    group.Average(x => x.Sentiments));
+
+                buffer.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)));//ONE STATE IS NULL(MAYBE MORE)
+                buffer.Last<State>().Sentiment = group.Average(x => x.Sentiments) * 10000;
             }
+
+            StatesForDisplay = buffer;
         }
 
 

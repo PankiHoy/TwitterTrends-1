@@ -7,8 +7,12 @@ namespace Core
         private string _postalCode;
         private List<Polygon> _shape;
        
+        public double Sentiment { get; set; } 
 
-        public string PostalCode { get => _postalCode; }
+        public string PostalCode { 
+            get => _postalCode;
+            set => _postalCode = value;  
+        }
         public List<Polygon> Shape { get => _shape; }
 
         public State(string postalCode, List<Polygon> shape)

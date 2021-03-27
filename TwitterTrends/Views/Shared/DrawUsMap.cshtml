@@ -1,16 +1,7 @@
-﻿
-
-@{
-    ViewBag.Title = "map";
-    Layout = "_Layout";
-}
-
-<h2>title</h2>
-@using Syncfusion.EJ2;
-<ejs-maps id="maps">
-    <e-maps-zoomsettings enable="true" EnablePanning="true"></e-maps-zoomsettings>
-    <e-maps-layers>
-        <e-maps-layer shapeData="ViewBag.mapdata">
-        </e-maps-layer>
-    </e-maps-layers>
-</ejs-maps>
+﻿@using Syncfusion.EJ2;
+@Html.EJS().Maps("maps").Height("450px").Width("650px").Layers(l =>
+{
+    l.ShapeSettings(ss => ss.Fill("#e5e5e5").ColorValuePath("Sentiment")
+    .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
+    .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
+}).Render()
