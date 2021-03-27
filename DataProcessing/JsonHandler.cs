@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -14,12 +15,17 @@ namespace DataProcessing
 
         public JsonHandler()
         {
-            using (StreamReader streamReader = new StreamReader(@"..\..\..\DataToProcess\states.json"))
+            using (StreamReader streamReader = new StreamReader(@"D:\programming\TwitterTrends\DataProcessing\DataToProcess\states.json"))
             {
                 string json = streamReader.ReadToEnd();
                 States.CreateStatesInstance(DeserializeStates(json));
             }
         }
+
+        //public JsonHandler()
+        //{
+
+        //}
 
         //public static JsonHandler GetJsonInstance()
         //{
@@ -175,7 +181,10 @@ namespace DataProcessing
                                         if (isShapeOpened)
                                         {
                                             isShapeOpened = false;
-                                            state = new State(postalCodes[stateNumber].Value, shape);
+                                            var postalCode = new StringBuilder(postalCodes[stateNumber].Value);
+                                            postalCode.Remove(0, 1);
+                                            postalCode.Remove(postalCode.Length - 1, 1);
+                                            state = new State(postalCode.ToString(), shape);
                                             //and add the state into states collection
                                             states.Add(state);
                                         }
@@ -212,6 +221,22 @@ namespace DataProcessing
                     }
                 }
             }
+
+            //var statesByName = states.OrderBy(s => s.PostalCode);
+            //int id_counter = 1;
+            //var id = new StringBuilder();
+            //foreach (State s in statesByName)
+            //{
+            //    if (id_counter < 10)
+            //        id.Append("0");
+
+            //    id.Append(id_counter);
+
+            //    s.PostalCode = id.ToString();
+
+            //    id.Clear();
+            //    id_counter++;
+            //}
 
             return states;
         }

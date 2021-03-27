@@ -88,9 +88,31 @@ namespace DataProcessing
             tweetBuilder.BuildTweets(@"..\..\..\DataToProcess\snow_tweets2014.txt");
             
             stopwatch.Stop();
-            var a = tweetBuilder.StatesForDisplay;
+            var a = tweetBuilder.StatesToDisplay;
             Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
 
+            StateDefiner stateDefiner = new StateDefiner();
+            var tweet = new Tweet()
+            {
+                Location = new Coordinate(-71.43692105, 41.55800391)
+            };
+            stateDefiner.DefineState(tweet);
+            Console.WriteLine(tweet.State);
+
+            foreach (var s in States.GetStatesInstance().StatesCollection)
+            {
+                if (s.PostalCode == "\"RI\"")
+                {
+                    foreach (var p in s.Shape)
+                    {
+                        Console.WriteLine();
+                        foreach (var v in p.Vertices)
+                        {
+                            Console.WriteLine($"{v.Longitude}, {v.Latitude}");
+                        }
+                    }
+                }
+            }
         }
     }
 }
