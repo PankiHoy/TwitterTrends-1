@@ -1,7 +1,7 @@
 ﻿@using Syncfusion.EJ2;
-@Html.EJS().Maps("maps").Height("1080px").Width("2800px").ZoomSettings(zoom => zoom.Enable(false).DoubleClickZoom(true)).Layers(l =>
+@Html.EJS().Maps("maps").Height("600px").Width("2700px").Layers(l =>
 {
-    l.TooltipSettings(ts => ts.ValuePath("STATE").Visible(true))
+    l.TooltipSettings(ts => ts.ValuePath("NAME").Visible(true))
     .ShapeSettings(ss => ss.Fill("#e5e5e5").Border(border => border.Color("#000000").Width(0.5)).ColorValuePath("Sentiment")
     .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
     .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
