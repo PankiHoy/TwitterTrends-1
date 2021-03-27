@@ -14,24 +14,19 @@ namespace TwitterTrends.Controllers
     {
         public IActionResult DrawUsMap()
         {
-            //MapDataSetting MapShapeData = new MapDataSetting
-            //{
-            //    async = true,
-            //    type = "GET",
-            //    dataOptions = "./wwwroot/us.json"
-            //};
-
             ViewBag.usmap = GetUSMap();
-            //ViewBag.mapdata = MapShapeData;
             ViewBag.sentimentdata = GetSentimentData();
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
             {
-                new MapsColorMapping {From = -10000, To = -1000, Color = "rgb(153,174,214)"},
-                new MapsColorMapping {From = -1000, To = -500, Color = "rgb(115,143,199)"},
-                new MapsColorMapping {From = -500, To = 0, Color = "161, 183, 227"},
-                new MapsColorMapping {From = 0, To = 500, Color = "rgb(247, 158, 131)"},
-                new MapsColorMapping {From = 500, To = 1000, Color = "rgb(232, 104, 65)"},
-                new MapsColorMapping {From = 1000, To = 10000, Color = "rgb(247, 62, 5)"}
+                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0,28,117)"},
+                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(50,166,255)"},
+                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(130,216,245)"},
+                new MapsColorMapping {From = -1000, To = -0.00001, Color = "rgb(0, 192, 166)"},
+                new MapsColorMapping {From = 0, To = 0, Color = "rgb(255, 255, 255)"},
+                new MapsColorMapping {From = 0.0001, To = 500, Color = "rgb(250, 224, 5)"},
+                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(250, 233, 100)"},
+                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(250, 191, 5)"},
+                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(250, 98, 5)"}
             };
             ViewBag.colorData = dataColor;
 
