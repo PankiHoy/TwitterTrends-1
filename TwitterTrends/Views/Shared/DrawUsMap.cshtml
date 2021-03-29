@@ -1,4 +1,6 @@
 ﻿@using Syncfusion.EJ2;
+@using System.IO
+@model Core.FileModel
 @Html.EJS().Maps("maps").Height("600px").Width("2700px").Layers(l =>
 {
     l.TooltipSettings(ts => ts.ValuePath("NAME").Visible(true))
@@ -6,3 +8,9 @@
     .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
     .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
 }).Render()
+<h3>Выберите файл для загрузки</h3>
+<form asp-action="AddFile" asp-controller="Default" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" /><br>
+    <input type="submit" value="Загрузить" />
+</form>
+@Html.ActionLink("zxc", "GetFiles", "Default");

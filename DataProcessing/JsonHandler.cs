@@ -15,7 +15,7 @@ namespace DataProcessing
 
         public JsonHandler()
         {
-            using (StreamReader streamReader = new StreamReader(@"D:\programming\TwitterTrends\DataProcessing\DataToProcess\states.json"))
+            using (StreamReader streamReader = new StreamReader(@"..\DataProcessing\DataToProcess\states.json"))
             {
                 string json = streamReader.ReadToEnd();
                 States.CreateStatesInstance(DeserializeStates(json));

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Core;
 using DataProcessing;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Syncfusion.EJ2.Maps;
 
@@ -12,8 +16,15 @@ namespace TwitterTrends.Controllers
 {
     public class Default : Controller
     {
+        IWebHostEnvironment _appEnvironment;
+
+        public Default(IWebHostEnvironment appEnvironment)
+        {
+            _appEnvironment = appEnvironment;
+        }
         public IActionResult DrawUsMap()
         {
+           
             ViewBag.usmap = GetUSMap();
             ViewBag.sentimentdata = GetSentimentData();
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
@@ -33,18 +44,64 @@ namespace TwitterTrends.Controllers
             return View();
         }
 
-        public object GetUSMap()
+        public static object GetUSMap()
         {
             string allText = System.IO.File.ReadAllText("./wwwroot/us.json");
             return JsonConvert.DeserializeObject(allText);
         }
 
-        public object GetSentimentData()
+        public static object GetSentimentData()
         {
             var tweetBuilder = new TweetBuilder();
-            tweetBuilder.BuildTweets(@"/Users/dev/Documents/GitHub/TwitterTrends/DataProcessing/DataToProcess/cali_tweets2014.txt");
+            tweetBuilder.BuildTweets(@"..\DataProcessing\DataToProcess\cali_tweets2014.txt");
 
             return tweetBuilder.StatesForDisplay;
         }
+        public static object GetSentimentData(string path)
+        {
+            var tweetBuilder = new TweetBuilder();
+            tweetBuilder.BuildTweets(path);
+
+            return tweetBuilder.StatesForDisplay;
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddFile(IFormFile uploadedFile)
+        {
+            if (uploadedFile != null)
+            {
+                // путь к папке Files
+                string path = "/Files/" + uploadedFile.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+                FileModel file = new FileModel { Name = uploadedFile.FileName, Path = path };
+               
+            }
+            return RedirectToAction("DrawUsMap");
+        }
+
+        [HttpGet]
+        public IActionResult GetFiles()
+        {
+            List<string> files = new List<string>();
+            foreach (string file in Directory.EnumerateFiles("wwwroot/Files"))
+            {
+                files.Add(file);
+            }
+
+            if (files.Count == 0)
+            {
+                ViewBag.smth = "no files";
+                return Content("No files");
+            }
+
+
+            ViewBag.sm = files.First();
+            return Content(files.First());
+        }
+
+        
     }
 }
