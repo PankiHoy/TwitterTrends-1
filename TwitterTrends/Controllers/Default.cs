@@ -128,32 +128,5 @@ namespace TwitterTrends.Controllers
             }
             return RedirectToAction("DrawUsMap");
         }
-
-        [HttpGet]
-        public IActionResult GetFiles()
-        {
-            List<string> files = new List<string>();
-            foreach (string file in Directory.EnumerateFiles("wwwroot/Files"))
-            {
-                files.Add(file);
-            }
-
-            if (files.Count == 0)
-            {
-                ViewBag.smth = "no files";
-                return Content("No files");
-            }
-
-
-            ViewBag.sm = files.First();
-            return Content(files.First());
-        }
-        //[HttpPost]
-        //public ContentResult ChooseFile()
-        //{
-            
-        //}
-
-
     }
 }
