@@ -8,6 +8,7 @@ namespace Core
         private List<Polygon> _shape;
        
         public double Sentiment { get; set; } 
+        public List<Tweet> Tweets { get; set; }
 
         public string PostalCode { 
             get => _postalCode;
@@ -19,6 +20,7 @@ namespace Core
         {
             _postalCode = postalCode;
             _shape = shape;
+            Tweets = new List<Tweet>();
         }
 
         public bool IsInnerPoint(Coordinate point)

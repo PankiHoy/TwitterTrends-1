@@ -28,30 +28,31 @@ namespace TwitterTrends.Controllers
         {
             List<FileModel> files = new List<FileModel>();
             int id = 0;
-            foreach (var file in Directory.EnumerateFiles("wwwroot/Files"))
+            foreach (var file in Directory.EnumerateFiles("wwwroot\\Files"))
             {
                 FileModel model = new FileModel();
+                model.Name = Path.GetFileName(file);
                 model.Path = file;
                 model.Id = id++;
                 files.Add(model);
             }
 
-            ViewBag.Files = new SelectList(files, "Path", "Path");
+            ViewBag.Files = new SelectList(files, "Path", "Name");
 
            
             ViewBag.usmap = GetUSMap();
             ViewBag.sentimentdata = GetSentimentData();
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
             {
-                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0,28,117)"},
-                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(50,166,255)"},
-                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(130,216,245)"},
-                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(0, 192, 166)"},
+                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0, 96, 128)"},
+                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(0, 153, 204)"},
+                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(77, 210, 255)"},
+                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(179, 236, 255)"},
                 new MapsColorMapping {From = 0, To = 0, Color = "rgb(255, 255, 255)"},
-                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(250, 224, 5)"},
-                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(250, 233, 100)"},
-                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(250, 191, 5)"},
-                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(250, 98, 5)"}
+                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(255, 214, 204)"},
+                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(255, 133, 102)"},
+                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(255, 51, 0)"},
+                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(179, 36, 0)"}
             };
             ViewBag.colorData = dataColor;
 
@@ -62,29 +63,30 @@ namespace TwitterTrends.Controllers
         {
             List<FileModel> files = new List<FileModel>();
             int id = 0;
-            foreach (var file in Directory.EnumerateFiles("wwwroot/Files"))
+            foreach (var file in Directory.EnumerateFiles("wwwroot\\Files"))
             {
                 FileModel model = new FileModel();
                 model.Path = file;
+                model.Name = System.IO.Path.GetFileName(file);
                 model.Id = id++;
                 files.Add(model);
             }
 
-            ViewBag.Files = new SelectList(files, "Path", "Path");
+            ViewBag.Files = new SelectList(files, "Path", "Name");
             var path = Path;
             ViewBag.usmap = GetUSMap();
             ViewBag.sentimentdata = GetSentimentData(path);
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
             {
-                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0,28,117)"},
-                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(50,166,255)"},
-                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(130,216,245)"},
-                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(0, 192, 166)"},
+                 new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0, 96, 128)"},
+                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(0, 153, 204)"},
+                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(77, 210, 255)"},
+                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(179, 236, 255)"},
                 new MapsColorMapping {From = 0, To = 0, Color = "rgb(255, 255, 255)"},
-                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(250, 224, 5)"},
-                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(250, 233, 100)"},
-                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(250, 191, 5)"},
-                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(250, 98, 5)"}
+                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(255, 214, 204)"},
+                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(255, 133, 102)"},
+                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(255, 51, 0)"},
+                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(179, 36, 0)"}
             };
             ViewBag.colorData = dataColor;
 

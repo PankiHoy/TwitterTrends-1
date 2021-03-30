@@ -37,6 +37,7 @@ namespace DataProcessing
                 if (state.IsInnerPoint(tweet.Location))
                 {
                     tweet.State = state.PostalCode;
+                    state.Tweets.Add(tweet);    //ADDED
                     break;
                 }
             }
