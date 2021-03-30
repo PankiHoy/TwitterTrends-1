@@ -13,4 +13,14 @@
     <input type="file" name="uploadedFile" /><br>
     <input type="submit" value="Загрузить" />
 </form>
-@Html.ActionLink("zxc", "GetFiles", "Default");
+<form asp-action="DrawUsMap" asp-controller="Default" asp-antiforgery="true">
+   
+        
+            <label asp-for="Path"></label>
+            <select asp-for="Path" asp-items="ViewBag.Files"></select>
+        
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+   
+</form>
