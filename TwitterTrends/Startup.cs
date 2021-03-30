@@ -40,6 +40,7 @@ namespace TwitterTrends
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDE5MjY3QDMxMzgyZTM0MmUzME1vWkkzYm5JNXZIRVVjTGhNRU83RmxiOFAwSzZRMzRYNnFRN0JpZm5kN3c9");
             if (env.IsDevelopment())
             {
 
@@ -64,7 +65,7 @@ namespace TwitterTrends
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Default}/{action=DrawUsMap}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
