@@ -1,25 +1,102 @@
-﻿@using Syncfusion.EJ2;
-@model Core.FileModel
-@Html.EJS().Maps("maps").Height("600px").Width("2700px").Layers(l =>
-{
-    l.TooltipSettings(ts => ts.ValuePath("NAME").Visible(true))
-    .ShapeSettings(ss => ss.Fill("#e5e5e5").Border(border => border.Color("#000000").Width(0.5)).ColorValuePath("Sentiment")
-    .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
-    .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
-}).Render()
-<h3>Выберите файл для загрузки</h3>
-<form asp-action="AddFile" asp-controller="Default" method="post" enctype="multipart/form-data">
-    <input type="file" name="uploadedFile" /><br>
-    <input type="submit" value="Загрузить" />
-</form>
-<form asp-action="DrawUsMap" asp-controller="Default" asp-antiforgery="true">
-   
-        
+﻿<div class="map_page_grid">
+    <div class="side_menu">
+        <h3>Please, choose file for analysis</h3>
+        <form asp-action="AddFile" asp-controller="Default" method="post" enctype="multipart/form-data">
+            <input class="butn" type="file" name="uploadedFile" /><br>
+            <input class="butn" type="submit" value="Upload" />
+        </form>
+        <form asp-action="DrawUsMap" asp-controller="Default" asp-antiforgery="true">
+
+
             <label asp-for="Path"></label>
             <select asp-for="Path" asp-items="ViewBag.Files"></select>
-        
-        <div>
-            <input type="submit" value="Save" />
+
+            <div>
+                <input class="butn" type="submit" value="Submit" />
+            </div>
+
+        </form>
+    </div>
+    <div class="map">
+        @using Syncfusion.EJ2;
+        @using Syncfusion.EJ2.Maps;
+        @model Core.FileModel
+        @Html.EJS().Maps("maps").Height("600px").Width("2700px").Layers(l =>
+   {
+       l.TooltipSettings(ts => ts.ValuePath("NAME").Visible(true))
+       .ShapeSettings(ss => ss.Fill("#e5e5e5").Border(border => border.Color("#000000").Width(0.5)).ColorValuePath("Sentiment")
+       .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
+       .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
+   }).ZoomSettings(zoom =>
+   {
+       zoom.Enable(true);
+       zoom.MaxZoom(10);
+       zoom.MinZoom(1);
+       zoom.MouseWheelZoom(true);
+   }).Render()
+    </div>
+</div>
+
+<div id="template" style="display: none;">
+    <div>
+        <div style="background-image:url(http://js.syncfusion.com/demos/web/Images/map/pin.png);margin-left:3px;height:40px;width:25px;margin-top:-15px;">
         </div>
-   
-</form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/site.css" type="text/css" />
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden
+    }
+
+    .map_page_grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "menu map";
+
+    }
+
+    .map_page_grid .map {
+        grid-area: map;
+        z-index: 0;
+    }
+
+        .map_page_grid .side_menu {
+            grid-area: menu;
+            padding-left: 50px;
+            overflow: hidden;
+            z-index: 1;
+            background-color: #251638;
+            color: #DBDBDB;
+            width: 10px;
+            transition: width 0.5s;
+        }
+
+    .butn {
+        background-color: #DBDBDB;
+        color: #251638;
+        border: none;
+        padding: 10px 20px;
+        margin: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: inherit;
+    }
+
+         .butn:focus {
+            outline: none;
+        }
+
+         .butn:active {
+            transform: scale(0.98);
+        }
+
+        .map_page_grid .side_menu:hover {
+            width: 500px;
+        }
+</style>

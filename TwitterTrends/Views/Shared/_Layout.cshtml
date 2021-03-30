@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
     @* Syncfusion Essential JS 2 Scripts *@
     <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
 </head>
@@ -33,10 +35,10 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container" padding="0px" margin="0px">
+        @*<main role="main" class="pb-3" padding="0" margin="0">*@
             @RenderBody()
-        </main>
+        @*</main>*@
     </div>
 
     <footer class="border-top footer text-muted">
