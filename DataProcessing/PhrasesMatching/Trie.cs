@@ -5,16 +5,16 @@ using System.Text.RegularExpressions;
 
 namespace DataProcessing.PhrasesMatching
 {
-   
+
     public class Trie
     {
-      
+
         private Regex _regex;
         public Trie()
         {
-            _regex = new Regex("[().,;:?\\x22/!@#\\s%'|\"]");
+            _regex = new Regex("[().,;:?\\x22/!@#\\s%|\"]");
         }
-       
+
         private readonly Node _root = new Node();
 
         public void Add(string phrase)
@@ -27,7 +27,7 @@ namespace DataProcessing.PhrasesMatching
                 var child = node[word];
 
                 if (child == null)
-                    child = node[word] = new Node(word);
+                    child = node[word] = new Node(word, node);
 
                 node = child;
             }
@@ -43,13 +43,15 @@ namespace DataProcessing.PhrasesMatching
             List<string> foundPhrases = new List<string>();
             StringBuilder phrase = new StringBuilder();
 
+            var nextWord = 0;
             string[] words = _regex.Split(text);
             for (int i = 0; i < words.Length;)
             {
-              //
                 var wordToSearch = words[i].ToLower();
                 if (node[wordToSearch] != null)
                 {
+                    if (node[wordToSearch].Parent == _root)
+                        nextWord = i + 1;
                     node = node[wordToSearch];
                     phrase.Append(wordToSearch);
                     phrase.Append(' ');
@@ -68,6 +70,7 @@ namespace DataProcessing.PhrasesMatching
                     else
                     {
                         node = _root;
+                        i = nextWord;
                         phrase.Clear();
                     }
                 }
@@ -84,6 +87,7 @@ namespace DataProcessing.PhrasesMatching
         private class Node : IEnumerable<Node>
         {
             private readonly string _word;
+            private readonly Node _parent;
             private readonly Dictionary<string, Node> _children = new Dictionary<string, Node>();
             private bool _isEndPhrase = false;
 
@@ -91,9 +95,15 @@ namespace DataProcessing.PhrasesMatching
             {
             }
 
-            public Node(string word)
+            public Node(string word, Node parent)
             {
                 _word = word;
+                _parent = parent;
+            }
+
+            public Node Parent
+            {
+                get { return _parent; }
             }
 
             public string Word

@@ -44,15 +44,15 @@ namespace TwitterTrends.Controllers
             ViewBag.sentimentdata = GetSentimentData();
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
             {
-                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0, 96, 128)"},
-                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(0, 153, 204)"},
-                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(77, 210, 255)"},
-                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(179, 236, 255)"},
+                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(69, 159, 255)"},
+                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(93, 170, 252)"},
+                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(126, 187, 252)"},
+                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(167, 207, 250)"},
                 new MapsColorMapping {From = 0, To = 0, Color = "rgb(255, 255, 255)"},
-                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(255, 214, 204)"},
-                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(255, 133, 102)"},
-                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(255, 51, 0)"},
-                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(179, 36, 0)"}
+                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(247, 176, 176)"},
+                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(252, 157, 157)"},
+                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(247, 121, 121)"},
+                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(247, 82, 82)"}
             };
             ViewBag.colorData = dataColor;
 
@@ -78,15 +78,15 @@ namespace TwitterTrends.Controllers
             ViewBag.sentimentdata = GetSentimentData(path);
             List<MapsColorMapping> dataColor = new List<MapsColorMapping>
             {
-                 new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(0, 96, 128)"},
-                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(0, 153, 204)"},
-                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(77, 210, 255)"},
-                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(179, 236, 255)"},
+                new MapsColorMapping {From = -10000, To = -3000, Color = "rgb(69, 159, 255)"},
+                new MapsColorMapping {From = -3000, To = -2000, Color = "rgb(93, 170, 252)"},
+                new MapsColorMapping {From = -2000, To = -1000, Color = "rgb(126, 187, 252)"},
+                new MapsColorMapping {From = -1000, To = -0.1, Color = "rgb(167, 207, 250)"},
                 new MapsColorMapping {From = 0, To = 0, Color = "rgb(255, 255, 255)"},
-                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(255, 214, 204)"},
-                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(255, 133, 102)"},
-                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(255, 51, 0)"},
-                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(179, 36, 0)"}
+                new MapsColorMapping {From = 0.1, To = 500, Color = "rgb(247, 176, 176)"},
+                new MapsColorMapping {From = 500, To = 1500, Color = "rgb(252, 157, 157)"},
+                new MapsColorMapping {From = 1500, To = 2500, Color = "rgb(247, 121, 121)"},
+                new MapsColorMapping {From = 2500, To = 5000, Color = "rgb(247, 82, 82)"}
             };
             ViewBag.colorData = dataColor;
 
