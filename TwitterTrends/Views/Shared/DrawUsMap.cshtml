@@ -24,15 +24,9 @@
         @Html.EJS().Maps("maps").Height("600px").Width("2700px").Layers(l =>
    {
        l.TooltipSettings(ts => ts.ValuePath("NAME").Visible(true))
-       .ShapeSettings(ss => ss.Fill("#e5e5e5").Border(border => border.Color("#000000").Width(0.5)).ColorValuePath("Sentiment")
+       .ShapeSettings(ss => ss.Fill("#e5e5e5").Border(border => border.Color("#000000").Width(0.1)).ColorValuePath("Sentiment")
        .ColorMapping(ViewBag.colorData)).DataSource(ViewBag.sentimentdata)
        .ShapeData(ViewBag.usmap).ShapeDataPath("PostalCode").ShapePropertyPath("STATE").DataSource(ViewBag.sentimentdata).Add();
-   }).ZoomSettings(zoom =>
-   {
-       zoom.Enable(true);
-       zoom.MaxZoom(10);
-       zoom.MinZoom(1);
-       zoom.MouseWheelZoom(true);
    }).Render()
     </div>
 </div>

@@ -52,8 +52,15 @@ namespace DataProcessing
                 //StatesToDisplay.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)),//ONE STATE IS NULL(MAYBE MORE)
                 //    group.Average(x => x.Sentiments));
 
+                double av = 0;
+                foreach (var tweet in group)
+                {
+                    av += tweet.Sentiments;
+                }
+
                 buffer.Add(StatesForDisplay.Find(x => x.PostalCode.Equals(group.Key)));//ONE STATE IS NULL(MAYBE MORE)
-                buffer.Last<State>().Sentiment = group.Average(x => x.Sentiments) * 10000;
+                                                                                       // buffer.Last<State>().Sentiment = group.Average(x => x.Sentiments) * 10000;
+                buffer.Last<State>().Sentiment = av * 10000 / group.Count();
             }
 
             StatesForDisplay = buffer;
